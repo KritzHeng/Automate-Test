@@ -276,11 +276,24 @@ def using_listinput(n):
         list_error.append(2)
         # 2
 
-fh = open('Test_Case.txt', 'r')
-count = 0
-for i in (fh):
-    a.append(i.split("|"))
-    count+=1
+try:
+	fh = open('Test_Case.txt', 'r')
+	count = 0
+	for i in (fh):
+		a.append(i.split("|"))
+		count+=1
+	fh.close()	
+except FileNotFoundError:
+	log = open('Log.txt', 'a')
+	log.write("{\n")
+	log.write("\tStart Date : " + str(start_time))
+	log.write("\n")
+	log.write("\tEnd Date : " + str(time.ctime()))
+	log.write("\n")
+	log.write("\tError : " + str(3))
+	log.write("\n")
+	log.write("}\n")
+	quit()
 for i in a:
     for x,j in enumerate(i):
         if(x == 0):
